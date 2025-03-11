@@ -1,0 +1,49 @@
+<% if (posts && posts.length> 0) { %>
+    <% posts.forEach((post)=> { %>
+        <div class="post">
+            <div class="post-left">
+                <a href="/post-detail/<%= post.id %>"><img class="post-img" id="summaryImagePreview"
+                        src=<%=post.summaryImage || '/img/no-image.png' %>
+                    alt="Skype"></a>
+            </div>
+            <div class="post-right">
+                <div class="post-header-mini">
+                    <img class="avatar" src="/img/user.png" alt="Author Avatar">
+                    <div class="post-info">
+                        <p>
+                            <%= post.author %>
+                        </p>
+                        <p>
+                            <%= new Date().toDateString() %>
+                        </p>
+                    </div>
+                </div>
+                <div class="post-body-mini">
+                    <h3 class="post-headline-mini"><a href="/post-detail/<%= post.id %>">
+                            <%= post.title %>
+                        </a>
+                    </h3>
+                    <p class="post-about">
+                        <a href="/post-detail/<%= post.id %>">
+                            <% if (post.summary) { %>
+                                <%- post.summary %>
+                                    <% } else { %>
+                                        <% if (post.textOnlyContent && post.textOnlyContent.length> 150) { %>
+                                            <%- post.textOnlyContent.slice(0, 150) + "..." %>
+                                                <% } else { %>
+                                                    <%- post.textOnlyContent %>
+                                                        <% } %>
+                                                            <% } %>
+                        </a>
+                    </p>
+
+                    <button class="btn-category-mini">
+                        <%= post.tags %>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <% }) %>
+            <% } else { %>
+                <p>No posts found.</p>
+                <% } %>

@@ -1,0 +1,33 @@
+<section class="post-detail">
+    <% if (post) { %>
+        <div class="post-header">
+            <img class="avatar" src="/img/user.png" alt="Author Avatar">
+            <div class="post-info detail">
+                <p>
+                    <%= post.author %>
+                </p>
+                <p>Dec 2, 2019</p>
+            </div>
+        </div>
+
+        <div class="post-body">
+            <div>
+                <h3 class="post-headline">
+                    <%= post.title %></a>
+                </h3>
+                <p class="post-text">
+                    <%- post.content %>
+                </p>
+
+                <div class="btn-container">
+                    <button class="btn-category">Category</button>
+                    <button class="btn edit"><a href="/create-post/<%=post.id %>">Edit</a></button>
+                </div>
+            </div>
+
+        </div>
+
+        <% } else { %>
+            <p>Post not found.</p>
+            <% } %>
+</section>

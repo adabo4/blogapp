@@ -1,0 +1,410 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+
+:root {
+    --red: #E10000;
+    --font-inter: "Inter", sans-serif;
+}
+
+.navbar {
+    background: linear-gradient(90deg, #B7B1F2 34.09%, #8175F0 56.54%, #1E166B 76.36%, #4B3AEF 93.8%);
+    width: 100%;
+    height: 80px;
+    box-shadow: 0px 5px 10px 1px rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-family: var(--font-inter);
+
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+
+
+}
+
+.nav-link {
+    color: var(--red);
+    font-size: 1.3rem;
+    display: inline-block;
+    position: relative;
+
+
+
+}
+
+.nav-link a {
+    text-decoration: none;
+    color: var(--red);
+
+
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    left: 0;
+    bottom: 0;
+    transform-origin: bottom right;
+    transform: scaleX(0);
+    background-color: var(--red);
+    transition: transform 0.25s ease-out;
+
+}
+
+.nav-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+
+}
+
+
+.logo {
+    width: 100px;
+}
+
+/* create post */
+form {
+    width: 650px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border: 1px solid gray;
+    margin: 5rem auto;
+    padding: 1rem;
+
+}
+
+::placeholder {
+    padding-left: 5px;
+}
+
+form input,
+form textarea {
+    border: 1px solid black;
+
+    width: 100%;
+    border-radius: 5px;
+}
+
+form input {
+    height: 2.5rem;
+
+}
+
+#editor {
+    height: 250px;
+}
+
+.btn {
+    width: 80px;
+    align-self: flex-end;
+}
+
+
+/* POST mini */
+
+.post {
+    width: 700px;
+    height: 250px;
+    margin: 2rem auto;
+    border: 1px solid gray;
+    display: flex;
+    font-family: var(--font-inter);
+}
+
+.post-left {
+    flex-shrink: 0;
+    width: 50%;
+    height: auto;
+    border-right: 1px solid black;
+
+}
+
+.post-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: left;
+
+}
+
+.post-right {
+    flex-grow: 1;
+    padding: 1rem;
+}
+
+.post-header-mini {
+    display: flex;
+    align-items: center;
+    font-size: .9rem;
+
+}
+
+.post-info {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: space-between;
+}
+
+.post-body-mini:hover {
+    color: var(--red);
+}
+
+.post-about {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    /* Number of lines before showing "..." */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+
+.summary-imgbox {
+    position: relative;
+    max-width: 200px;
+}
+
+
+
+.xmark {
+    position: absolute;
+    bottom: 0;
+    right: -15px;
+    background-color: transparent;
+    z-index: 9999;
+    font-size: 1rem;
+    display: none;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+
+}
+
+.avatar {
+    width: 40px;
+}
+
+.post-body-mini {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    margin-top: 1rem;
+
+}
+
+.post-body-mini a:hover {
+    color: var(--red);
+}
+
+.post-headline {
+    font-size: 1.3rem;
+}
+
+
+
+.post-body-mini a {
+    all: unset;
+    cursor: pointer;
+}
+
+.post-headline-mini a {
+    all: unset;
+    cursor: pointer;
+}
+
+
+
+.btn-category-mini {
+    width: 80px;
+}
+
+
+/* POST DETAIL */
+
+.post-detail {
+    width: 60%;
+    max-width: 1200px;
+    margin: 5rem auto;
+    border: 1px solid black;
+    font-family: var(--font-inter);
+    font-size: 1rem;
+
+
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    margin: 0 auto;
+    padding-top: 1rem;
+    padding-bottom: 0;
+}
+
+.post-header p {
+    position: relative;
+}
+
+.post-header p::after {
+    content: ".";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    bottom: 65%;
+    left: 100%;
+    margin-left: 5px;
+
+}
+
+.detail {
+    justify-content: start;
+}
+
+.post-headline {
+    margin: 1rem auto;
+}
+
+
+.post-text {
+    margin: 1rem auto;
+}
+
+.post-header,
+.post-body>div {
+    width: 70%;
+    margin: 1rem auto;
+}
+
+.btn-container {
+    margin-top: 1rem;
+}
+
+
+.btn,
+.summaryImageLabel {
+    background-color: var(--red);
+    opacity: 50%;
+    height: 30px;
+    border-radius: 5px;
+    box-shadow: 3px 3px 0 0 rgba(0, 0, 0, 0.3);
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    cursor: pointer;
+
+
+}
+
+.summaryImageLabel {
+    width: 35%;
+    text-transform: none;
+    text-align: center;
+    display: inline-block;
+    width: 200px;
+    padding: .3rem;
+
+}
+
+.summaryImageLabel:active {
+    transform: translateY(1px);
+    box-shadow: 1px 1px 0 0 rgba(0, 0, 0, 0.3);
+
+}
+
+.btn a {
+    color: white;
+    text-decoration: none;
+}
+
+#summaryImageUpload {
+    display: none;
+}
+
+.ql-editor img {
+    max-width: 100%;
+    /* Limit the image size */
+    width: auto;
+    /* Allow images to resize with container */
+    height: auto;
+    /* Maintain aspect ratio */
+    cursor: pointer;
+}
+
+.ql-editor img.resizable {
+    resize: both;
+    overflow: hidden;
+    max-width: 100%;
+    height: auto;
+}
+
+.post-body img {
+    max-width: 450px;
+    height: auto;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+
+
+.ql-font-roboto {
+    font-family: 'Roboto', sans-serif;
+}
+
+.ql-font-inter {
+    font-family: var(--font-inter);
+}
+
+.ql-snow .ql-picker.ql-size .ql-picker-label[data-value]::before,
+.ql-snow .ql-picker.ql-size .ql-picker-item[data-value]::before {
+    content: attr(data-value) !important;
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value]::before {
+    content: attr(data-value) !important;
+}
+
+.ql-snow .ql-picker.ql-font {
+    width: 150px !important;
+    white-space: nowrap;
+}
+
+
+/*TAGS*/
+
+#tagsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.tag {
+    background-color: #f0f0f0;
+    padding: 5px;
+    border-radius: 15px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+
+.remove-tag {
+    cursor: pointer;
+    margin-left: 5px;
+    font-size: 18px;
+}

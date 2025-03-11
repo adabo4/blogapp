@@ -1,0 +1,49 @@
+<% if (locals?.post) { %>
+    <form action="/post-detail/<%= post.id %>?_method=PATCH" method="POST">
+        <input type="text" placeholder="Title" name="title" value="<%=post.title %>">
+        <input type="text" placeholder="Author" name="author" value="<%=post.author %>">
+        <input type="text" placeholder="Summary" name="summary" value="<%=post.summary %>">
+        <input type="text" placeholder="Tags" name="tags" value="<%=post.tags %>">
+
+        <div id="editor">
+            <%- post.content %>
+        </div>
+
+        <input type="hidden" name="content" id="hiddenContent">
+
+        <!-- Image Upload Inputs -->
+        <label class="summaryImageLabel" for="summaryImageUpload">Choose Summary Image:</label>
+        <input type="file" id="summaryImageUpload" accept="image/*">
+        <input type="hidden" name="summaryImage" id="hiddenSummaryImage" value="<%= post.summaryImage  %>">
+        <div class="summary-imgbox">
+            <img id="summaryImagePreview" src="<%= post.summaryImage || '' %>" alt="Summary Image Preview"
+                style="max-width: 200px; display: block;">
+            <button type="button" class="xmark" style="display: block;">X</button>
+        </div>
+
+        <button type="submit" class="btn btn-submit">Submit</button>
+    </form>
+    <% } else { %>
+        <form action="/" method="POST">
+            <input type="text" placeholder="Title" name="title">
+            <input type="text" placeholder="Author" name="author">
+            <input type="text" placeholder="Summary" name="summary">
+            <input type="text" placeholder="Tags" name="tags">
+
+            <div id="editor"></div>
+
+            <input type="hidden" name="content" id="hiddenContent">
+
+            <!-- Image Upload Inputs -->
+            <label class="summaryImageLabel" for="summaryImageUpload">Choose Summary Image:</label>
+            <input type="file" id="summaryImageUpload" accept="image/*">
+            <input type="hidden" name="summaryImage" id="hiddenSummaryImage">
+            <div class="summary-imgbox">
+                <img id="summaryImagePreview" src="" alt="Summary Image Preview"
+                    style="max-width: 200px; display: none;">
+                <button type="button" class="xmark" style="display: none;">X</button>
+            </div>
+
+            <button type="submit" class="btn btn-submit">Submit</button>
+        </form>
+        <% } %>
