@@ -1,0 +1,16 @@
+<h1>Posts tagged with "<%= tag %>"</h1>
+
+<% if (posts.length> 0) { %>
+    <% posts.forEach(post=> { %>
+        <div>
+            <h2><a href="/post/<%= post.id %>">
+                    <%= post.title %>
+                </a></h2>
+            <p>
+                <%= post.summary %>
+            </p>
+        </div>
+        <% }) %>
+            <% } else { %>
+                <p>No posts found with this tag.</p>
+                <% } %>

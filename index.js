@@ -45,6 +45,14 @@ app.get("/create-post", (req, res) => {
     res.render("createPost", { title: "Create Post" });
 });
 
+app.get('/tagged', (req, res) => {
+    const tag = req.query.tag;
+    const filteredPosts = posts.filter(post => post.tags.includes(tag));
+
+    res.render('index', { title: "Filtered Posts", posts: filteredPosts, tag });
+});
+
+
 app.get("/post-detail/:id", (req, res) => {
     const postId = req.params.id;
     const post = posts.find(p => p.id === postId);

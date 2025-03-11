@@ -20,7 +20,13 @@
                 </p>
 
                 <div class="btn-container">
-                    <button class="btn-category">Category</button>
+                    <div class="tag-container">
+                        <% post.tags.map((tag)=> { %>
+                            <a href="/tagged?tag=<%= tag %>" class="btn-category">
+                                <%= tag %>
+                            </a>
+                            <% }) %>
+                    </div>
                     <button class="btn edit"><a href="/create-post/<%=post.id %>">Edit</a></button>
                 </div>
             </div>
