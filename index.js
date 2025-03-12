@@ -142,7 +142,7 @@ app.delete("/delete/:id", (req, res) => {
                 return res.status(500).send("Server error");
             }
 
-            res.render("index", { title: "post", posts })
+            // res.render("index", { title: "post", posts })
             res.redirect("/") // Redirect to homepage after deletion
         });
     });
