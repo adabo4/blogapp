@@ -111,9 +111,43 @@ app.post('/upload-image', (req, res) => {
 
 app.get("/create-post/:id", (req, res) => {
     const postID = req.params.id;
-    let post = posts.find((post) => postID === post.id)
+    let post = posts.find((p) => postID === p.id)
     res.render("createPost", { title: "Edit Post", post })
 })
+
+app.delete("/delete/:id", (req, res) => {
+    const postId = req.params.id;
+
+    // Read the current posts from the JSON file
+    fs.readFile(postsFile, "utf8", (err, data) => {
+        if (err) {
+            console.error("Error reading file:", err);
+            return res.status(500).send("Server error");
+        }
+
+        let posts = JSON.parse(data); // Convert JSON string to array
+
+        // Find index of post to delete
+        let postIndex = posts.findIndex((post) => post.id === postId);
+        if (postIndex === -1) {
+            return res.status(404).send("Post not found.");
+        }
+
+        posts.splice(postIndex, 1); // Remove the post from the array
+
+        // Write the updated posts back to the JSON file
+        fs.writeFile(postsFile, JSON.stringify(posts, null, 2), (err) => {
+            if (err) {
+                console.error("Error writing file:", err);
+                return res.status(500).send("Server error");
+            }
+
+            res.render("index", { title: "post", posts })
+            res.redirect("/") // Redirect to homepage after deletion
+        });
+    });
+});
+
 
 app.patch("/post-detail/:id", (req, res) => {
 

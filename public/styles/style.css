@@ -376,6 +376,7 @@ form input {
 .post-body img {
     max-width: 450px;
     height: auto;
+
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
@@ -427,4 +428,66 @@ form input {
     cursor: pointer;
     margin-left: 5px;
     font-size: 18px;
+}
+
+
+@media screen and (max-width: 768px) {
+
+    /*post mini */
+
+    .post {
+        flex-direction: column;
+        height: auto;
+        max-height: 400px;
+        width: 90%;
+    }
+
+    .post-left {
+        width: 100%;
+    }
+
+    .post-right {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .post-info {
+        justify-content: flex-start;
+    }
+
+    .post-img {
+        width: 100%;
+        max-width: 400px;
+        height: 200px;
+    }
+
+    /*post detail */
+
+    .post-body img {
+        width: 100%;
+
+    }
+
+    .post-detail {
+        width: 90%;
+    }
+
+    .post-header,
+    .post-body>div {
+        width: 80%;
+    }
+
+    /* create post */
+
+    form {
+        width: 95%;
+    }
+
+
+
+
+
+
+
+
 }
