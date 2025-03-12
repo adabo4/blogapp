@@ -37,9 +37,19 @@ function getRandomDefaultImage() {
     return `/img/defaults/${defaultImages[randomIndex]}`;
 }
 
+
 app.get("/", (req, res) => {
-    res.render("index", { title: "Home", posts });
+    fs.readFile(postsFile, "utf8", (err, data) => {
+        if (err) {
+            console.error("Error reading file:", err);
+            return res.status(500).send("Server error");
+        }
+
+        const posts = JSON.parse(data);
+        res.render("index", { title: "Post List", posts });
+    });
 });
+
 
 app.get("/create-post", (req, res) => {
     res.render("createPost", { title: "Create Post" });
@@ -90,11 +100,11 @@ app.post("/", (req, res) => {
 
 app.post('/upload-image', (req, res) => {
     const { base64Image, fileName } = req.body;
-    const imageBuffer = Buffer.from(base64Image, 'base64');  // Decode base64 string
+    const imageBuffer = Buffer.from(base64Image, 'base64');
 
     const uploadDir = path.join(__dirname, 'uploads');
     if (!fs.existsSync(uploadDir)) {
-        fs.mkdirSync(uploadDir);  // Create uploads directory if it doesn't exist
+        fs.mkdirSync(uploadDir);
     }
 
     const filePath = path.join(uploadDir, fileName);
@@ -118,36 +128,30 @@ app.get("/create-post/:id", (req, res) => {
 app.delete("/delete/:id", (req, res) => {
     const postId = req.params.id;
 
-    // Read the current posts from the JSON file
     fs.readFile(postsFile, "utf8", (err, data) => {
         if (err) {
             console.error("Error reading file:", err);
             return res.status(500).send("Server error");
         }
 
-        let posts = JSON.parse(data); // Convert JSON string to array
+        let posts = JSON.parse(data);
 
-        // Find index of post to delete
         let postIndex = posts.findIndex((post) => post.id === postId);
         if (postIndex === -1) {
             return res.status(404).send("Post not found.");
         }
 
-        posts.splice(postIndex, 1); // Remove the post from the array
+        posts.splice(postIndex, 1);
 
-        // Write the updated posts back to the JSON file
         fs.writeFile(postsFile, JSON.stringify(posts, null, 2), (err) => {
             if (err) {
                 console.error("Error writing file:", err);
                 return res.status(500).send("Server error");
             }
-
-            // res.render("index", { title: "post", posts })
-            res.redirect("/") // Redirect to homepage after deletion
+            res.status(200).json({ posts });
         });
     });
 });
-
 
 app.patch("/post-detail/:id", (req, res) => {
 
